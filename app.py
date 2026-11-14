@@ -430,7 +430,7 @@ def send_message(pid, kind, to_label, body, link="", phone="", inbox_body=None):
         ok, info = send_sms(phone, sms_text)
         to_label += " · SMS sent" if ok else f" · SMS not sent ({info})"
     db().execute("INSERT INTO messages (ts, profile_id, kind, to_label, body, link) VALUES (?,?,?,?,?,?)",
-                 (iso(), pid, kind, to_label, inbox_body if inbox_body is not None else body, link if DEMO_MODE else ""))
+                 (iso(), pid, kind, to_label, inbox_body if inbox_body is not None else body, ""))
     db().commit()
 
 
